@@ -14,4 +14,13 @@
         android:layout_height="wrap_content"
         android:text="蓝牙" />
 
+    <Button
+        android:id="@+id/bt_scan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/sw_open"
+        android:layout_below="@+id/sw_open"
+        android:layout_marginTop="26dp"
+        android:text="扫描设备" />
+
 </RelativeLayout>

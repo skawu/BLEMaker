@@ -2,11 +2,16 @@ package cn.com.linuxc.blemaker;
 
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.Intent;
 import android.os.Bundle;
+import android.sax.StartElementListener;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -22,7 +27,9 @@ public class WinMain extends Activity {
 		final int REQUEST_ENABLE_BT = 1; // 蓝牙使能请求代码
 
 		Switch openSwitch = (Switch) findViewById(R.id.sw_open);
+		Button bt_scan = (Button) findViewById(R.id.bt_scan);
 
+		// switch 开关操作，用于打开和关闭蓝牙
 		openSwitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
 
 			@Override
@@ -45,7 +52,26 @@ public class WinMain extends Activity {
 				}
 			}
 		});
-
+		
+		final BluetoothAdapter.LeScanCallback myLeScanCallback = new BluetoothAdapter.LeScanCallback() {
+			
+			@Override
+			public void onLeScan(BluetoothDevice device, int rssi, byte[] scanRecord) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		// 扫描按钮操作
+		bt_scan.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Toast.makeText(getApplicationContext(), "点击扫描按钮", Toast.LENGTH_SHORT).show();
+				BTAdapter.startLeScan(myLeScanCallback);
+			}
+		});
 	}
 
 	@Override
